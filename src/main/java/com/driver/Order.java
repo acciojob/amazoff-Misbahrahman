@@ -5,21 +5,18 @@ public class Order {
     private String id;
     private int deliveryTime;
 
-    public Order() {
-
-        // The deliveryTime has to converted from string to int and then stored in the attribute
-        //deliveryTime  = HH*60 + MM
-    }
+//    public Order() {
+//
+//        // The deliveryTime has to converted from string to int and then stored in the attribute
+//        //deliveryTime  = HH*60 + MM
+//    }
 
     public Order(String id, String deliveryTime) {
         this.id = id;
-        this.deliveryTime = convert(deliveryTime);
-    }
-
-    private int convert(String deliveryTime) {
-        String hh = deliveryTime.substring(0 , 2);
-        String mm = deliveryTime.substring(2 , 4);
-        return Integer.parseInt(hh) * 60 + Integer.parseInt(mm);
+        String time[] = deliveryTime.split(":");
+        String hour = time[0];
+        String minute = time[1];
+        this.deliveryTime = Integer.parseInt(hour) * 60 + Integer.parseInt(minute);
     }
 
 
@@ -27,5 +24,7 @@ public class Order {
         return id;
     }
 
-    public int getDeliveryTime() {return deliveryTime;}
+    public int getDeliveryTime() {
+        return deliveryTime;
+    }
 }
